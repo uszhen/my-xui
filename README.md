@@ -37,23 +37,21 @@
 - Telegram bot通知、控制功能
 - 更多高级配置项，详见面板 
 
-:bulb:具体**使用、配置细节以及问题排查**请点击这里:point_right:[WIKI](https://github.com/uszhen/x-ui/wiki):point_left:  
- Specific **Usages、Configurations and Debug** please refer to [WIKI](https://github.com/uszhen/x-ui/wiki)    
 # 一键安装
 在安装前请确保你的系统支持`bash`环境,且系统网络正常  
 
 &#x26A1;从原版升级也可使用该命令，数据不会丢失&#x26A1;
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui/master/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/uszhen/x-ui/master/install.sh)
 ```    
 For English Users,please use the following command to install English supported version:  
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui/master/install_en.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/uszhen/x-ui/master/install_en.sh)
 ```
 如需安装指定的版本,可以在上述命令中指定版本号,如指定版本为`0.3.4.4`,安装命令如下：    
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui/master/install.sh) 0.3.4.4   
+bash <(curl -Ls https://raw.githubusercontent.com/uszhen/x-ui/master/install.sh) 0.3.4.4   
 ```
 
 # 效果预览  
@@ -175,14 +173,6 @@ xray 状态: 运行
 - Ubuntu 16+
 - Debian 8+
 
-
-# 服务器代理推广  
-
-如果你觉得本项目对你有用,而且你也恰巧有这方面的需求,你也可以选择通过我的购买链接赞助我  
-- [搬瓦工GIA服务器](https://bandwagonhost.com/aff.php?aff=41846)  - - - 仅推荐购买GIA套餐 - - -   
-
-如果你希望购买一些现成的代理服务,可选择下述代理服务
-- [搬瓦工官方机场](https://justmysocks.net/members/aff.php?aff=16884)  
 
 
 
