@@ -1,3 +1,11 @@
+# 服务器代理推广  
+
+如果你觉得本项目对你有用,而且你也恰巧有这方面的需求,你也可以选择通过我的购买链接赞助我  
+- [搬瓦工GIA服务器](https://bandwagonhost.com/aff.php?aff=41846)  - - - 仅推荐购买GIA套餐 - - -   
+
+如果你希望购买一些现成的代理服务,可选择下述代理服务
+- [搬瓦工官方机场](https://justmysocks.net/members/aff.php?aff=16884)  
+
 # X-UI
 简体中文|[ENGLISH](./README_EN.md)  
 
@@ -29,8 +37,8 @@
 - Telegram bot通知、控制功能
 - 更多高级配置项，详见面板 
 
-:bulb:具体**使用、配置细节以及问题排查**请点击这里:point_right:[WIKI](https://github.com/FranzKafkaYu/x-ui/wiki):point_left:  
- Specific **Usages、Configurations and Debug** please refer to [WIKI](https://github.com/FranzKafkaYu/x-ui/wiki)    
+:bulb:具体**使用、配置细节以及问题排查**请点击这里:point_right:[WIKI](https://github.com/uszhen/x-ui/wiki):point_left:  
+ Specific **Usages、Configurations and Debug** please refer to [WIKI](https://github.com/uszhen/x-ui/wiki)    
 # 一键安装
 在安装前请确保你的系统支持`bash`环境,且系统网络正常  
 
@@ -167,38 +175,14 @@ xray 状态: 运行
 - Ubuntu 16+
 - Debian 8+
 
-# 变更记录   
-- 2023.07.18：随机生成Reality dest与serverNames,去除微软域名;细化sniffing配置  
-- 2023.06.10：开启TLS时自动复用面板证书与域名;增加证书热重载设定;优化设备限制功能  
-- 2023.04.09：支持Reality;支持新的telegram bot控制指令  
-- 2023.03.05：支持用户到期时间限制;随机用户名、密码与端口生成
-- 2023.02.09：支持单端口内用户流量限制与统计；支持VLESS utls配置与分享链接导出  
-- 2022.12.07：添加设备并发限制;细化tls配置,支持minVersion、maxVersion与cipherSuites选择    
-- 2022.11.14：添加xtls-rprx-vision流控选项;定时自动更新geo与清除日志  
-- 2022.10.23：实现全英文支持;增加批量导出分享链接功能；优化页面细节与Telegram通知    
-- 2022.08.11：实现Vmess/Vless/Trojan单端口多用户；增加CPU使用超限提醒  
-- 2022.07.28：增加acme standalone模式申请证书;增加x-ui自动保活机制;优化编译选项以适配更多系统  
-- 2022.07.24：增加自动生成面板根路径，节点流量自动重置功能，设备IP接入变化通知功能
-- 2022.07.21：增加节点IP接入变化提醒，Web面板增加停止/重启xray功能，优化部分翻译
-- 2022.07.11：增加节点到期提醒、流量预警策略，增加Telegram bot节点复制、获取分享链接等
-- 2022.07.03：重构Telegram bot功能，指令控制不再需要键盘输入;增加Trojan底层传输配置
-- 2022.06.19：增加Shadowsocs2022新的Cipher，增加节点搜索、一键清除流量功能
-- 2022.05.14：增加Telegram bot Command控制功能，支持关闭/开启/删除节点等
-- 2022.04.25：增加SSH登录提醒、面板登录提醒
-- 2022.04.23：增加更多Telegram bot提醒功能
-- 2022.04.16：增加面板设置Telegram bot功能
-- 2022.04.12：优化Telegram Bot通知提醒
-- 2022.04.06：优化安装/更新流程，增加证书签发功能，添加Telegram bot机器人推送功能
-
 
 # 服务器代理推广  
 
 如果你觉得本项目对你有用,而且你也恰巧有这方面的需求,你也可以选择通过我的购买链接赞助我  
-- [搬瓦工GIA高端线路](https://bandwagonhost.com/aff.php?aff=41846),仅推荐购买GIA套餐      
+- [搬瓦工GIA服务器](https://bandwagonhost.com/aff.php?aff=41846)  - - - 仅推荐购买GIA套餐 - - -   
 
 如果你希望购买一些现成的代理服务,可选择下述代理服务
-- [搬瓦工关联机场](https://justmysocks.net/members/aff.php?aff=16884)  
+- [搬瓦工官方机场](https://justmysocks.net/members/aff.php?aff=16884)  
 
 
-## Stargazers over time
 
