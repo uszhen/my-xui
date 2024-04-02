@@ -38,7 +38,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/uszhen/x-ui/master/install.sh)
 
 # 配置要求  
 ## 内存  
-- 512MB minimal/1024MB+ recommend  
+- 512MB 最低/1024MB+ 建议  
 ## OS  
 - CentOS 7+
 - Ubuntu 18+
