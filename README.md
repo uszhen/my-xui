@@ -36,84 +36,6 @@ bash <(curl -Ls https://raw.githubusercontent.com/uszhen/x-ui/master/install_en.
 bash <(curl -Ls https://raw.githubusercontent.com/uszhen/x-ui/master/install.sh) 0.3.4.4   
 ```
 
-# 效果预览  
-`面板使用`:  
-<details>
-<summary><b>点击查看效果预览</b></summary>  
-  
-![image](https://user-images.githubusercontent.com/38254177/180629631-f76a05c8-ecf0-4685-bbc7-a7058747d213.png)  
-![image](https://user-images.githubusercontent.com/38254177/180629662-b7a325fc-1ebb-47c9-992c-1e7c758a326b.png)
-
-
- </details>  
- 
-`Bot使用`:  
-<details>
-<summary><b>点击查看效果预览</b></summary>  
-  
-![image](https://user-images.githubusercontent.com/38254177/178551055-893936b7-b75f-4ee8-a773-eee7c6f43f51.png)  
- 
-</details>  
-
-`流量提醒`:  
-<details>
-<summary><b>点击查看效果预览</b></summary> 
-  
-![image](https://user-images.githubusercontent.com/38254177/180039760-dc987a30-e21c-49a3-8e03-19666566a822.png)
-
-</details>  
-
-`SSH提醒`:  
-<details>
-<summary><b>点击查看效果预览</b></summary> 
-  
-![image](https://user-images.githubusercontent.com/38254177/180040129-2ec1a7c0-abd3-41dc-aab0-8cd22415c943.png)
-
-</details>  
-
-`限额提醒`:  
-<details>
-<summary><b>点击查看效果预览</b></summary> 
-  
-![image](https://user-images.githubusercontent.com/38254177/180040521-af6e9ef8-d7e5-44e8-834e-25b3b8e3e1b5.png)
-
-</details>  
-
-`到期提醒`:  
-<details>
-<summary><b>点击查看效果预览</b></summary> 
-  
-![image](https://user-images.githubusercontent.com/38254177/180041690-90ca4b1f-3a2d-470b-bc0c-eca9261a739a.png)
-
-</details>  
-
-`登录提醒`:  
-<details>
-<summary><b>点击查看效果预览</b></summary> 
-  
-![image](https://user-images.githubusercontent.com/38254177/180040913-b8bf2fe1-6fc1-43ab-a683-ae23db1866b2.png)  
-![image](https://user-images.githubusercontent.com/38254177/180041179-a5f4cd52-a1ba-4aa9-abb2-b94e36722385.png)
-
-</details>  
-
-`用户速览`:  
-<details>
-<summary><b>点击查看效果预览</b></summary> 
-  
-![image](https://user-images.githubusercontent.com/38254177/230761101-20431dd7-5bce-489e-9139-0ceb9ab9a2dc.png)
-
-</details>  
-
-`用户查询`:  
-<details>
-<summary><b>点击查看效果预览</b></summary> 
-  
-![image](https://user-images.githubusercontent.com/38254177/230761252-c283c02d-82a4-46ce-a180-dfab4048180d.png)
-
-</details>  
-
-
-
 # 快捷方式
 安装成功后，通过键入`x-ui`进入控制选项菜单，目前菜单内容：
 ```
@@ -149,11 +71,11 @@ xray 状态: 运行
 ```
 # 配置要求  
 ## 内存  
-- 128MB minimal/256MB+ recommend  
+- 512MB minimal/1024MB+ recommend  
 ## OS  
 - CentOS 7+
-- Ubuntu 16+
-- Debian 8+
+- Ubuntu 18+
+- Debian 11+
 
 
 
