@@ -116,7 +116,7 @@ config_after_install() {
     fi
 }
 
-install_x-ui() {
+install_my-xui() {
     systemctl stop my-xui
     cd /usr/local/
 
@@ -187,4 +187,4 @@ install_x-ui() {
 
 echo -e "${green}开始安装${plain}"
 install_base
-install_x-ui $1
+install_my-xui $1
