@@ -9,9 +9,9 @@ plain='\033[0m'
 declare -r DEFAULT_LOG_FILE_DELETE_TRIGGER=35
 
 # consts for geo update
-PATH_FOR_GEO_IP='/usr/local/x-ui/bin/geoip.dat'
-PATH_FOR_CONFIG='/usr/local/x-ui/bin/config.json'
-PATH_FOR_GEO_SITE='/usr/local/x-ui/bin/geosite.dat'
+PATH_FOR_GEO_IP='/usr/local/my-xui/bin/geoip.dat'
+PATH_FOR_CONFIG='/usr/local/my-xui/bin/config.json'
+PATH_FOR_GEO_SITE='/usr/local/my-xui/bin/geosite.dat'
 URL_FOR_GEO_IP='https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat'
 URL_FOR_GEO_SITE='https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat'
 
@@ -104,7 +104,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/uszhen/x-ui/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/uszhen/my-xui/master/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -123,7 +123,7 @@ update() {
         fi
         return 0
     fi
-    bash <(curl -Ls https://raw.githubusercontent.com/uszhen/x-ui/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/uszhen/my-xui/master/install.sh)
     if [[ $? == 0 ]]; then
         LOGI "更新完成，已自动重启面板 "
         exit 0
@@ -138,16 +138,16 @@ uninstall() {
         fi
         return 0
     fi
-    systemctl stop x-ui
-    systemctl disable x-ui
-    rm /etc/systemd/system/x-ui.service -f
+    systemctl stop my-xui
+    systemctl disable my-xui
+    rm /etc/systemd/system/my-xui.service -f
     systemctl daemon-reload
     systemctl reset-failed
-    rm /etc/x-ui/ -rf
-    rm /usr/local/x-ui/ -rf
+    rm /etc/my-xui/ -rf
+    rm /usr/local/my-xui/ -rf
 
     echo ""
-    echo -e "卸载成功，如果你想删除此脚本，则退出脚本后运行 ${green}rm /usr/bin/x-ui -f${plain} 进行删除"
+    echo -e "卸载成功，如果你想删除此脚本，则退出脚本后运行 ${green}rm /usr/bin/my-xui -f${plain} 进行删除"
     echo ""
 
     if [[ $# == 0 ]]; then
@@ -163,7 +163,7 @@ reset_user() {
         fi
         return 0
     fi
-    /usr/local/x-ui/x-ui setting -username admin -password admin
+    /usr/local/my-xui/my-xui setting -username admin -password admin
     echo -e "用户名和密码已重置为 ${green}admin${plain}，现在请重启面板"
     confirm_restart
 }
@@ -176,13 +176,13 @@ reset_config() {
         fi
         return 0
     fi
-    /usr/local/x-ui/x-ui setting -reset
+    /usr/local/my-xui/my-xui setting -reset
     echo -e "所有面板设置已重置为默认值，现在请重启面板，并使用默认的 ${green}54321${plain} 端口访问面板"
     confirm_restart
 }
 
 check_config() {
-    info=$(/usr/local/x-ui/x-ui setting -show true)
+    info=$(/usr/local/my-xui/my-xui setting -show true)
     if [[ $? != 0 ]]; then
         LOGE "get current settings error,please check logs"
         show_menu
@@ -196,7 +196,7 @@ set_port() {
         LOGD "已取消"
         before_show_menu
     else
-        /usr/local/x-ui/x-ui setting -port ${port}
+        /usr/local/my-xui/my-xui setting -port ${port}
         echo -e "设置端口完毕，现在请重启面板，并使用新设置的端口 ${green}${port}${plain} 访问面板"
         confirm_restart
     fi
@@ -208,11 +208,11 @@ start() {
         echo ""
         LOGI "面板已运行，无需再次启动，如需重启请选择重启"
     else
-        systemctl start x-ui
+        systemctl start my-xui
         sleep 2
         check_status
         if [[ $? == 0 ]]; then
-            LOGI "x-ui 启动成功"
+            LOGI "my-xui 启动成功"
         else
             LOGE "面板启动失败，可能是因为启动时间超过了两秒，请稍后查看日志信息"
         fi
@@ -229,11 +229,11 @@ stop() {
         echo ""
         LOGI "面板已停止，无需再次停止"
     else
-        systemctl stop x-ui
+        systemctl stop my-xui
         sleep 2
         check_status
         if [[ $? == 1 ]]; then
-            LOGI "x-ui 与 xray 停止成功"
+            LOGI "my-xui 与 xray 停止成功"
         else
             LOGE "面板停止失败，可能是因为停止时间超过了两秒，请稍后查看日志信息"
         fi
@@ -245,11 +245,11 @@ stop() {
 }
 
 restart() {
-    systemctl restart x-ui
+    systemctl restart my-xui
     sleep 2
     check_status
     if [[ $? == 0 ]]; then
-        LOGI "x-ui 与 xray 重启成功"
+        LOGI "my-xui 与 xray 重启成功"
     else
         LOGE "面板重启失败，可能是因为启动时间超过了两秒，请稍后查看日志信息"
     fi
@@ -259,18 +259,18 @@ restart() {
 }
 
 status() {
-    systemctl status x-ui -l
+    systemctl status my-xui -l
     if [[ $# == 0 ]]; then
         before_show_menu
     fi
 }
 
 enable() {
-    systemctl enable x-ui
+    systemctl enable my-xui
     if [[ $? == 0 ]]; then
-        LOGI "x-ui 设置开机自启成功"
+        LOGI "my-xui 设置开机自启成功"
     else
-        LOGE "x-ui 设置开机自启失败"
+        LOGE "my-xui 设置开机自启失败"
     fi
 
     if [[ $# == 0 ]]; then
@@ -279,11 +279,11 @@ enable() {
 }
 
 disable() {
-    systemctl disable x-ui
+    systemctl disable my-xui
     if [[ $? == 0 ]]; then
-        LOGI "x-ui 取消开机自启成功"
+        LOGI "my-xui 取消开机自启成功"
     else
-        LOGE "x-ui 取消开机自启失败"
+        LOGE "my-xui 取消开机自启失败"
     fi
 
     if [[ $# == 0 ]]; then
@@ -292,14 +292,14 @@ disable() {
 }
 
 show_log() {
-    journalctl -u x-ui.service -e --no-pager -f
+    journalctl -u my-xui.service -e --no-pager -f
     if [[ $# == 0 ]]; then
         before_show_menu
     fi
 }
 
 migrate_v2_ui() {
-    /usr/local/x-ui/x-ui v2-ui
+    /usr/local/my-xui/my-xui v2-ui
 
     before_show_menu
 }
@@ -312,23 +312,23 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/x-ui -N --no-check-certificate https://github.com/uszhen/x-ui/raw/master/x-ui.sh
+    wget -O /usr/bin/my-xui -N --no-check-certificate https://github.com/uszhen/my-xui/raw/master/my-xui.sh
     if [[ $? != 0 ]]; then
         echo ""
         LOGE "下载脚本失败，请检查本机能否连接 Github"
         before_show_menu
     else
-        chmod +x /usr/bin/x-ui
+        chmod +x /usr/bin/my-xui
         LOGI "升级脚本成功，请重新运行脚本" && exit 0
     fi
 }
 
 # 0: running, 1: not running, 2: not installed
 check_status() {
-    if [[ ! -f /etc/systemd/system/x-ui.service ]]; then
+    if [[ ! -f /etc/systemd/system/my-xui.service ]]; then
         return 2
     fi
-    temp=$(systemctl status x-ui | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+    temp=$(systemctl status my-xui | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
     if [[ x"${temp}" == x"running" ]]; then
         return 0
     else
@@ -337,7 +337,7 @@ check_status() {
 }
 
 check_enabled() {
-    temp=$(systemctl is-enabled x-ui)
+    temp=$(systemctl is-enabled my-xui)
     if [[ x"${temp}" == x"enabled" ]]; then
         return 0
     else
@@ -624,7 +624,7 @@ ssl_cert_issue_by_cloudflare() {
     fi
 }
 
-#add for cron jobs,including sync geo data,check logs and restart x-ui
+#add for cron jobs,including sync geo data,check logs and restart my-xui
 cron_jobs() {
     clear
     echo -e "
@@ -680,25 +680,25 @@ update_geo() {
         echo "update geosite.dat succeed"
         rm -f ${PATH_FOR_GEO_SITE}.bak
     fi
-    #restart x-ui
-    systemctl restart x-ui
+    #restart my-xui
+    systemctl restart my-xui
 }
 
 enable_auto_update_geo() {
     LOGI "正在开启自动更新geo数据..."
     crontab -l >/tmp/crontabTask.tmp
-    echo "00 4 */2 * * x-ui geo > /dev/null" >>/tmp/crontabTask.tmp
+    echo "00 4 */2 * * my-xui geo > /dev/null" >>/tmp/crontabTask.tmp
     crontab /tmp/crontabTask.tmp
     rm /tmp/crontabTask.tmp
     LOGI "开启自动更新geo数据成功"
 }
 
 disable_auto_update_geo() {
-    crontab -l | grep -v "x-ui geo" | crontab -
+    crontab -l | grep -v "my-xui geo" | crontab -
     if [[ $? -ne 0 ]]; then
-        LOGI "取消x-ui 自动更新geo数据失败"
+        LOGI "取消my-xui 自动更新geo数据失败"
     else
-        LOGI "取消x-ui 自动更新geo数据成功"
+        LOGI "取消my-xui 自动更新geo数据成功"
     fi
 }
 
@@ -725,7 +725,7 @@ clear_log() {
             LOGE "清除xray日志文件:${filePath}失败"
         else
             LOGI "清除xray日志文件:${filePath}成功"
-            systemctl restart x-ui
+            systemctl restart my-xui
         fi
     else
         LOGI "当前日志大小为${fileSize}M,小于${DEFAULT_LOG_FILE_DELETE_TRIGGER}M,将不会清除"
@@ -745,7 +745,7 @@ enable_auto_clear_log() {
     fi
     if [[ -f ${accessfilePath} ]]; then
         crontab -l >/tmp/crontabTask.tmp
-        echo "30 4 */2 * * x-ui clear ${accessfilePath} > /dev/null" >>/tmp/crontabTask.tmp
+        echo "30 4 */2 * * my-xui clear ${accessfilePath} > /dev/null" >>/tmp/crontabTask.tmp
         crontab /tmp/crontabTask.tmp
         rm /tmp/crontabTask.tmp
         LOGI "设置定时清除xray日志:${accessfilePath}成功"
@@ -755,7 +755,7 @@ enable_auto_clear_log() {
 
     if [[ -f ${errorfilePath} ]]; then
         crontab -l >/tmp/crontabTask.tmp
-        echo "30 4 */2 * * x-ui clear ${errorfilePath} > /dev/null" >>/tmp/crontabTask.tmp
+        echo "30 4 */2 * * my-xui clear ${errorfilePath} > /dev/null" >>/tmp/crontabTask.tmp
         crontab /tmp/crontabTask.tmp
         rm /tmp/crontabTask.tmp
         LOGI "设置定时清除xray日志:${errorfilePath}成功"
@@ -766,7 +766,7 @@ enable_auto_clear_log() {
 
 #disable auto dlete log
 disable_auto_clear_log() {
-    crontab -l | grep -v "x-ui clear" | crontab -
+    crontab -l | grep -v "my-xui clear" | crontab -
     if [[ $? -ne 0 ]]; then
         LOGI "取消 定时清除xray日志失败"
     else
@@ -778,20 +778,20 @@ show_usage() {
     echo "my-xui 管理脚本使用方法: "
     echo "------------------------------------------"
     echo "my-xui              - 显示管理菜单 (功能更多)"
-    echo "my-xui start        - 启动 x-ui 面板"
-    echo "my-xui stop         - 停止 x-ui 面板"
-    echo "my-xui restart      - 重启 x-ui 面板"
-    echo "my-xui status       - 查看 x-ui 状态"
-    echo "my-xui enable       - 设置 x-ui 开机自启"
-    echo "my-xui disable      - 取消 x-ui 开机自启"
-    echo "my-xui log          - 查看 x-ui 日志"
-    echo "my-xui v2-ui        - 迁移本机器的 v2-ui 账号数据至 x-ui"
-    echo "my-xui update       - 更新 x-ui 面板"
-    echo "my-xui install      - 安装 x-ui 面板"
-    echo "my-xui uninstall    - 卸载 x-ui 面板"
-    echo "my-xui clear        - 清除 x-ui 日志"
-    echo "my-xui geo          - 更新 x-ui geo数据"
-    echo "my-xui cron         - 配置 x-ui 定时任务"
+    echo "my-xui start        - 启动 my-xui 面板"
+    echo "my-xui stop         - 停止 my-xui 面板"
+    echo "my-xui restart      - 重启 my-xui 面板"
+    echo "my-xui status       - 查看 my-xui 状态"
+    echo "my-xui enable       - 设置 my-xui 开机自启"
+    echo "my-xui disable      - 取消 my-xui 开机自启"
+    echo "my-xui log          - 查看 my-xui 日志"
+    echo "my-xui v2-ui        - 迁移本机器的 v2-ui 账号数据至 my-xui"
+    echo "my-xui update       - 更新 my-xui 面板"
+    echo "my-xui install      - 安装 my-xui 面板"
+    echo "my-xui uninstall    - 卸载 my-xui 面板"
+    echo "my-xui clear        - 清除 my-xui 日志"
+    echo "my-xui geo          - 更新 my-xui geo数据"
+    echo "my-xui cron         - 配置 my-xui 定时任务"
     echo "------------------------------------------"
 }
 
@@ -800,27 +800,27 @@ show_menu() {
   ${green}my-xui 面板管理脚本${plain}
   ${green}0.${plain} 退出脚本
 ————————————————
-  ${green}1.${plain} 安装 x-ui
-  ${green}2.${plain} 更新 x-ui
-  ${green}3.${plain} 卸载 x-ui
+  ${green}1.${plain} 安装 my-xui
+  ${green}2.${plain} 更新 my-xui
+  ${green}3.${plain} 卸载 my-xui
 ————————————————
   ${green}4.${plain} 重置用户名密码
   ${green}5.${plain} 重置面板设置
   ${green}6.${plain} 设置面板端口
   ${green}7.${plain} 查看当前面板信息
 ————————————————
-  ${green}8.${plain} 启动 x-ui
-  ${green}9.${plain} 停止 x-ui
-  ${green}10.${plain} 重启 x-ui
-  ${green}11.${plain} 查看 x-ui 状态
-  ${green}12.${plain} 查看 x-ui 日志
+  ${green}8.${plain} 启动 my-xui
+  ${green}9.${plain} 停止 my-xui
+  ${green}10.${plain} 重启 my-xui
+  ${green}11.${plain} 查看 my-xui 状态
+  ${green}12.${plain} 查看 my-xui 日志
 ————————————————
-  ${green}13.${plain} 设置 x-ui 开机自启
-  ${green}14.${plain} 取消 x-ui 开机自启
+  ${green}13.${plain} 设置 my-xui 开机自启
+  ${green}14.${plain} 取消 my-xui 开机自启
 ————————————————
   ${green}15.${plain} 一键安装 bbr (最新内核)
   ${green}16.${plain} 一键申请SSL证书(acme申请)
-  ${green}17.${plain} 配置x-ui定时任务
+  ${green}17.${plain} 配置my-xui定时任务
  "
     show_status
     echo && read -p "请输入选择 [0-17],查看面板登录信息请输入数字7:" num
