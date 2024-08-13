@@ -775,9 +775,9 @@ disable_auto_clear_log() {
 }
 
 show_usage() {
-    echo "xui 管理脚本使用方法: "
+    echo "my-xui 管理脚本使用方法: "
     echo "------------------------------------------"
-    echo "xui               - 显示管理菜单 (功能更多)"
+    echo "my-xui               - 显示管理菜单 (功能更多)"
     echo "x-ui start        - 启动 x-ui 面板"
     echo "x-ui stop         - 停止 x-ui 面板"
     echo "x-ui restart      - 重启 x-ui 面板"
