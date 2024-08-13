@@ -795,7 +795,7 @@ show_usage() {
 
 show_menu() {
     echo -e "
-  ${green}x-ui control menu${plain}
+  ${green}my-xui control menu${plain}
   ${green}0.${plain} exit
 ————————————————
   ${green}1.${plain} install   x-ui
