@@ -109,9 +109,9 @@ config_after_install() {
             echo -e "${green}面板登录用户密码:${passwordTemp}${plain}"
             echo -e "${red}面板登录端口:${portTemp}${plain}"
             echo -e "###############################################"
-            echo -e "${red}如您遗忘了面板登录相关信息,可在安装完成后输入x-ui,输入选项7查看面板登录信息${plain}"
+            echo -e "${red}如您遗忘了面板登录相关信息,可在安装完成后输入my-xui,输入选项7查看面板登录信息${plain}"
         else
-            echo -e "${red}当前属于版本升级,保留之前设置项,登录方式保持不变,可输入x-ui后键入数字7查看面板登录信息${plain}"
+            echo -e "${red}当前属于版本升级,保留之前设置项,登录方式保持不变,可输入my-xui后键入数字7查看面板登录信息${plain}"
         fi
     fi
 }
