@@ -26,9 +26,8 @@
 bash <(curl -Ls https://raw.githubusercontent.com/uszhen/my-xui/master/install.sh) 1.0
 ```
 
-```    
 For English Users,please use the following command to install English supported version:  
-```
+
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/uszhen/my-xui/master/install_en.sh) 1.0
 ```
