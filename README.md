@@ -22,6 +22,10 @@
 # 一键安装
 在安装前请确保你的系统支持`bash`环境,且系统网络正常  
 
+```
+bash <(curl -Ls https://raw.githubusercontent.com/uszhen/my-xui/master/install.sh) 1.0
+```
+
 ```    
 For English Users,please use the following command to install English supported version:  
 ```
