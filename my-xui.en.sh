@@ -9,9 +9,9 @@ plain='\033[0m'
 declare -r DEFAULT_LOG_FILE_DELETE_TRIGGER=35
 
 # consts for geo update
-PATH_FOR_GEO_IP='/usr/local/x-ui/bin/geoip.dat'
-PATH_FOR_CONFIG='/usr/local/x-ui/bin/config.json'
-PATH_FOR_GEO_SITE='/usr/local/x-ui/bin/geosite.dat'
+PATH_FOR_GEO_IP='/usr/local/my-xui/bin/geoip.dat'
+PATH_FOR_CONFIG='/usr/local/my-xui/bin/config.json'
+PATH_FOR_GEO_SITE='/usr/local/my-xui/bin/geosite.dat'
 URL_FOR_GEO_IP='https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat'
 URL_FOR_GEO_SITE='https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat'
 
@@ -90,7 +90,7 @@ confirm() {
 }
 
 confirm_restart() {
-    confirm "confirm to restart x-ui,xray service will be restart" "y"
+    confirm "confirm to restart my-xui,xray service will be restart" "y"
     if [[ $? == 0 ]]; then
         restart
     else
@@ -104,7 +104,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/uszhen/x-ui/master/install_en.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/uszhen/my-xui/master/install_en.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -123,7 +123,7 @@ update() {
         fi
         return 0
     fi
-    bash <(curl -Ls https://raw.githubusercontent.com/uszhen/x-ui/master/install_en.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/uszhen/my-xui/master/install_en.sh)
     if [[ $? == 0 ]]; then
         LOGI "upgrade finished,restart completed"
         exit 0
@@ -131,23 +131,23 @@ update() {
 }
 
 uninstall() {
-    confirm "sure you want to uninstall x-ui?" "n"
+    confirm "sure you want to uninstall my-xui?" "n"
     if [[ $? != 0 ]]; then
         if [[ $# == 0 ]]; then
             show_menu
         fi
         return 0
     fi
-    systemctl stop x-ui
-    systemctl disable x-ui
-    rm /etc/systemd/system/x-ui.service -f
+    systemctl stop my-xui
+    systemctl disable my-xui
+    rm /etc/systemd/system/my-xui.service -f
     systemctl daemon-reload
     systemctl reset-failed
-    rm /etc/x-ui/ -rf
-    rm /usr/local/x-ui/ -rf
+    rm /etc/my-xui/ -rf
+    rm /usr/local/my-xui/ -rf
 
     echo ""
-    echo -e "uninstall x-ui succeed,you can delete this script by ${green}rm /usr/bin/x-ui -f${plain}"
+    echo -e "uninstall my-xui succeed,you can delete this script by ${green}rm /usr/bin/my-xui -f${plain}"
     echo ""
 
     if [[ $# == 0 ]]; then
@@ -163,8 +163,8 @@ reset_user() {
         fi
         return 0
     fi
-    /usr/local/x-ui/x-ui setting -username admin -password admin
-    echo -e "your username and password are reset to ${green}admin${plain},restart x-ui to take effect"
+    /usr/local/my-xui/my-xui setting -username admin -password admin
+    echo -e "your username and password are reset to ${green}admin${plain},restart my-xui to take effect"
     confirm_restart
 }
 
@@ -176,13 +176,13 @@ reset_config() {
         fi
         return 0
     fi
-    /usr/local/x-ui/x-ui setting -reset
-    echo -e "all settings are reset to default,please restart x-ui,and use default port ${green}54321${plain} to access panel"
+    /usr/local/my-xui/my-xui setting -reset
+    echo -e "all settings are reset to default,please restart my-xui,and use default port ${green}54321${plain} to access panel"
     confirm_restart
 }
 
 check_config() {
-    info=$(/usr/local/x-ui/x-ui setting -show true)
+    info=$(/usr/local/my-xui/my-xui setting -show true)
     if [[ $? != 0 ]]; then
         LOGE "get current settings error,please check logs"
         show_menu
@@ -196,8 +196,8 @@ set_port() {
         LOGD "cancelled..."
         before_show_menu
     else
-        /usr/local/x-ui/x-ui setting -port ${port}
-        echo -e "set port done,please restart x-ui,and use this new port ${green}${port}${plain} to access panel"
+        /usr/local/my-xui/my-xui setting -port ${port}
+        echo -e "set port done,please restart my-xui,and use this new port ${green}${port}${plain} to access panel"
         confirm_restart
     fi
 }
@@ -206,15 +206,15 @@ start() {
     check_status
     if [[ $? == 0 ]]; then
         echo ""
-        LOGI "x-ui is running,no need to start agin"
+        LOGI "my-xui is running,no need to start agin"
     else
-        systemctl start x-ui
+        systemctl start my-xui
         sleep 2
         check_status
         if [[ $? == 0 ]]; then
-            LOGI "start x-ui  succeed"
+            LOGI "start my-xui  succeed"
         else
-            LOGE "start x-ui failed,please check logs"
+            LOGE "start my-xui failed,please check logs"
         fi
     fi
 
@@ -227,15 +227,15 @@ stop() {
     check_status
     if [[ $? == 1 ]]; then
         echo ""
-        LOGI "x-ui is stopped,no need to stop again"
+        LOGI "my-xui is stopped,no need to stop again"
     else
-        systemctl stop x-ui
+        systemctl stop my-xui
         sleep 2
         check_status
         if [[ $? == 1 ]]; then
-            LOGI "stop x-ui succeed"
+            LOGI "stop my-xui succeed"
         else
-            LOGE "stop x-ui failed,please check logs"
+            LOGE "stop my-xui failed,please check logs"
         fi
     fi
 
@@ -245,13 +245,13 @@ stop() {
 }
 
 restart() {
-    systemctl restart x-ui
+    systemctl restart my-xui
     sleep 2
     check_status
     if [[ $? == 0 ]]; then
-        LOGI "restart x-ui succeed"
+        LOGI "restart my-xui succeed"
     else
-        LOGE "stop x-ui failed,please check logs"
+        LOGE "stop my-xui failed,please check logs"
     fi
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -259,18 +259,18 @@ restart() {
 }
 
 status() {
-    systemctl status x-ui -l
+    systemctl status my-xui -l
     if [[ $# == 0 ]]; then
         before_show_menu
     fi
 }
 
 enable() {
-    systemctl enable x-ui
+    systemctl enable my-xui
     if [[ $? == 0 ]]; then
-        LOGI "enable x-ui on system startup succeed"
+        LOGI "enable my-xui on system startup succeed"
     else
-        LOGE "enable x-ui on system startup failed"
+        LOGE "enable my-xui on system startup failed"
     fi
 
     if [[ $# == 0 ]]; then
@@ -279,11 +279,11 @@ enable() {
 }
 
 disable() {
-    systemctl disable x-ui
+    systemctl disable my-xui
     if [[ $? == 0 ]]; then
-        LOGI "disable x-ui on system startup succeed"
+        LOGI "disable my-xui on system startup succeed"
     else
-        LOGE "disable x-ui on system startup failed"
+        LOGE "disable my-xui on system startup failed"
     fi
 
     if [[ $# == 0 ]]; then
@@ -292,14 +292,14 @@ disable() {
 }
 
 show_log() {
-    journalctl -u x-ui.service -e --no-pager -f
+    journalctl -u my-xui.service -e --no-pager -f
     if [[ $# == 0 ]]; then
         before_show_menu
     fi
 }
 
 migrate_v2_ui() {
-    /usr/local/x-ui/x-ui v2-ui
+    /usr/local/my-xui/my-xui v2-ui
 
     before_show_menu
 }
@@ -312,23 +312,23 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/x-ui -N --no-check-certificate https://github.com/uszhen/x-ui/raw/master/x-ui_en.sh
+    wget -O /usr/bin/my-xui -N --no-check-certificate https://github.com/uszhen/my-xui/raw/master/x-ui_en.sh
     if [[ $? != 0 ]]; then
         echo ""
         LOGE "update shell script failed,please check whether your server can access github"
         before_show_menu
     else
-        chmod +x /usr/bin/x-ui
+        chmod +x /usr/bin/my-xui
         LOGI "update shell script succeed" && exit 0
     fi
 }
 
 # 0: running, 1: not running, 2: not installed
 check_status() {
-    if [[ ! -f /etc/systemd/system/x-ui.service ]]; then
+    if [[ ! -f /etc/systemd/system/my-xui.service ]]; then
         return 2
     fi
-    temp=$(systemctl status x-ui | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+    temp=$(systemctl status my-xui | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
     if [[ x"${temp}" == x"running" ]]; then
         return 0
     else
@@ -337,7 +337,7 @@ check_status() {
 }
 
 check_enabled() {
-    temp=$(systemctl is-enabled x-ui)
+    temp=$(systemctl is-enabled my-xui)
     if [[ x"${temp}" == x"enabled" ]]; then
         return 0
     else
@@ -349,7 +349,7 @@ check_uninstall() {
     check_status
     if [[ $? != 2 ]]; then
         echo ""
-        LOGE "x-ui is installed already"
+        LOGE "my-xui is installed already"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -363,7 +363,7 @@ check_install() {
     check_status
     if [[ $? == 2 ]]; then
         echo ""
-        LOGE "please install x-ui first"
+        LOGE "please install my-xui first"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -377,15 +377,15 @@ show_status() {
     check_status
     case $? in
     0)
-        echo -e "x-ui status: ${green}running${plain}"
+        echo -e "my-xui status: ${green}running${plain}"
         show_enable_status
         ;;
     1)
-        echo -e "x-ui status: ${yellow}stopped${plain}"
+        echo -e "my-xui status: ${yellow}stopped${plain}"
         show_enable_status
         ;;
     2)
-        echo -e "x-ui status: ${red}not installed${plain}"
+        echo -e "my-xui status: ${red}not installed${plain}"
         ;;
     esac
     show_xray_status
@@ -624,11 +624,11 @@ ssl_cert_issue_by_cloudflare() {
     fi
 }
 
-#add for cron jobs,including sync geo data,check logs and restart x-ui
+#add for cron jobs,including sync geo data,check logs and restart my-xui
 cron_jobs() {
     clear
     echo -e "
-  ${green}x-ui cron jobs${plain}
+  ${green}my-xui cron jobs${plain}
   ${green}0.${plain}  return main menu
   ${green}1.${plain}  enable automatically update geo data
   ${green}2.${plain}  disable automatically update geo data 
@@ -680,25 +680,25 @@ update_geo() {
         echo "update geosite.dat succeed"
         rm -f ${PATH_FOR_GEO_SITE}.bak
     fi
-    #restart x-ui
-    systemctl restart x-ui
+    #restart my-xui
+    systemctl restart my-xui
 }
 
 enable_auto_update_geo() {
     LOGI "enable automatically update geo data..."
     crontab -l >/tmp/crontabTask.tmp
-    echo "00 4 */2 * * x-ui geo > /dev/null" >>/tmp/crontabTask.tmp
+    echo "00 4 */2 * * my-xui geo > /dev/null" >>/tmp/crontabTask.tmp
     crontab /tmp/crontabTask.tmp
     rm /tmp/crontabTask.tmp
     LOGI "enable automatically update geo data succeed"
 }
 
 disable_auto_update_geo() {
-    crontab -l | grep -v "x-ui geo" | crontab -
+    crontab -l | grep -v "my-xui geo" | crontab -
     if [[ $? -ne 0 ]]; then
-        LOGI "cancel x-ui automatically update geo data failed"
+        LOGI "cancel my-xui automatically update geo data failed"
     else
-        LOGI "cancel x-ui automatically update geo data succeed"
+        LOGI "cancel my-xui automatically update geo data succeed"
     fi
 }
 
@@ -725,7 +725,7 @@ clear_log() {
             LOGE "clear xray log :${filePath} failed"
         else
             LOGI "clear xray log :${filePath} succeed"
-            systemctl restart x-ui
+            systemctl restart my-xui
         fi
     else
         LOGI "current size of xray log is:${fileSize}M,smaller that ${DEFAULT_LOG_FILE_DELETE_TRIGGER}M,won't clear"
@@ -745,7 +745,7 @@ enable_auto_clear_log() {
     fi
     if [[ -f ${accessfilePath} ]]; then
         crontab -l >/tmp/crontabTask.tmp
-        echo "30 4 */2 * * x-ui clear ${accessfilePath} > /dev/null" >>/tmp/crontabTask.tmp
+        echo "30 4 */2 * * my-xui clear ${accessfilePath} > /dev/null" >>/tmp/crontabTask.tmp
         crontab /tmp/crontabTask.tmp
         rm /tmp/crontabTask.tmp
         LOGI "enable automatically clear xray log:${accessfilePath} succeed"
@@ -755,7 +755,7 @@ enable_auto_clear_log() {
 
     if [[ -f ${errorfilePath} ]]; then
         crontab -l >/tmp/crontabTask.tmp
-        echo "30 4 */2 * * x-ui clear ${errorfilePath} > /dev/null" >>/tmp/crontabTask.tmp
+        echo "30 4 */2 * * my-xui clear ${errorfilePath} > /dev/null" >>/tmp/crontabTask.tmp
         crontab /tmp/crontabTask.tmp
         rm /tmp/crontabTask.tmp
         LOGI "enable automatically clear xray log:${errorfilePath} succeed"
@@ -766,7 +766,7 @@ enable_auto_clear_log() {
 
 #disable auto dlete log
 disable_auto_clear_log() {
-    crontab -l | grep -v "x-ui clear" | crontab -
+    crontab -l | grep -v "my-xui clear" | crontab -
     if [[ $? -ne 0 ]]; then
         LOGI "cancel  automatically clear xray logs failed"
     else
@@ -775,21 +775,21 @@ disable_auto_clear_log() {
 }
 
 show_usage() {
-    echo "x-ui control menu usages: "
+    echo "my-xui control menu usages: "
     echo "------------------------------------------"
-    echo -e "x-ui              - Enter control menu"
-    echo -e "x-ui start        - Start x-ui "
-    echo -e "x-ui stop         - Stop  x-ui "
-    echo -e "x-ui restart      - Restart x-ui "
-    echo -e "x-ui status       - Show x-ui status"
-    echo -e "x-ui enable       - Enable x-ui on system startup"
-    echo -e "x-ui disable      - Disable x-ui on system startup"
-    echo -e "x-ui log          - Check x-ui logs"
-    echo -e "x-ui update       - Update x-ui "
-    echo -e "x-ui install      - Install x-ui "
-    echo -e "x-ui uninstall    - Uninstall x-ui "
-    echo "x-ui geo             - Update x-ui geo "
-    echo "x-ui cron            - Cron x-ui jobs"
+    echo -e "my-xui              - Enter control menu"
+    echo -e "my-xui start        - Start my-xui "
+    echo -e "my-xui stop         - Stop  my-xui "
+    echo -e "my-xui restart      - Restart my-xui "
+    echo -e "my-xui status       - Show my-xui status"
+    echo -e "my-xui enable       - Enable my-xui on system startup"
+    echo -e "my-xui disable      - Disable my-xui on system startup"
+    echo -e "my-xui log          - Check my-xui logs"
+    echo -e "my-xui update       - Update my-xui "
+    echo -e "my-xui install      - Install my-xui "
+    echo -e "my-xui uninstall    - Uninstall my-xui "
+    echo "my-xui geo             - Update my-xui geo "
+    echo "my-xui cron            - Cron my-xui jobs"
     echo "------------------------------------------"
 }
 
@@ -798,27 +798,27 @@ show_menu() {
   ${green}my-xui control menu${plain}
   ${green}0.${plain} exit
 ————————————————
-  ${green}1.${plain} install   x-ui
-  ${green}2.${plain} update    x-ui
-  ${green}3.${plain} uninstall x-ui
+  ${green}1.${plain} install   my-xui
+  ${green}2.${plain} update    my-xui
+  ${green}3.${plain} uninstall my-xui
 ————————————————
   ${green}4.${plain} reset username
   ${green}5.${plain} reset panel
   ${green}6.${plain} reset panel port
   ${green}7.${plain} check panel info
 ————————————————
-  ${green}8.${plain} start x-ui
-  ${green}9.${plain} stop  x-ui
-  ${green}10.${plain} restart x-ui
-  ${green}11.${plain} check x-ui status
-  ${green}12.${plain} check x-ui logs
+  ${green}8.${plain} start my-xui
+  ${green}9.${plain} stop  my-xui
+  ${green}10.${plain} restart my-xui
+  ${green}11.${plain} check my-xui status
+  ${green}12.${plain} check my-xui logs
 ————————————————
-  ${green}13.${plain} enable  x-ui on system startup
-  ${green}14.${plain} disable x-ui on system startup
+  ${green}13.${plain} enable  my-xui on system startup
+  ${green}14.${plain} disable my-xui on system startup
 ————————————————
   ${green}15.${plain} enable bbr 
   ${green}16.${plain} issuse certs
-  ${green}17.${plain} x-ui cron jobs
+  ${green}17.${plain} my-xui cron jobs
  "
     show_status
     echo && read -p "please input a legal number[0-16],input 7 for checking login info:" num
