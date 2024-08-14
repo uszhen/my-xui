@@ -312,7 +312,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/my-xui -N --no-check-certificate https://github.com/uszhen/my-xui/raw/master/x-ui_en.sh
+    wget -O /usr/bin/my-xui -N --no-check-certificate https://github.com/uszhen/my-xui/raw/master/my-xui_en.sh
     if [[ $? != 0 ]]; then
         echo ""
         LOGE "update shell script failed,please check whether your server can access github"
