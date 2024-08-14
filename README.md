@@ -25,13 +25,13 @@
 对于华人用户，请使用以下命令安装中文支持版本：
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/uszhen/my-xui/master/install.sh) 1.0
+bash <(curl -Ls https://raw.githubusercontent.com/uszhen/my-xui/master/install.sh) 1.0.0
 ```
 
 For English Users,please use the following command to install English supported version:  
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/uszhen/my-xui/master/install_en.sh) 1.0
+bash <(curl -Ls https://raw.githubusercontent.com/uszhen/my-xui/master/install_en.sh) 1.0.0
 ```
 
 # 配置要求  
