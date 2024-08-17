@@ -19,10 +19,10 @@
 - Telegram bot通知、控制功能
 - 更多高级配置项，详见面板 
 
-# 安装说明    xray-core v1.8.4 支持win7
+# 安装说明    
 在安装前请确保你的系统支持`bash`环境,且系统网络正常.
 
-对于华人用户，请使用以下命令安装中文支持版本：
+对于华人用户，请使用以下命令安装中文支持版本：xray-core v1.8.4 支持win7
 
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/uszhen/my-xui/master/install.sh) 1.0.0
