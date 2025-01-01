@@ -1,4 +1,4 @@
-# 服务器代理服务
+# 服务器代理服务 Server Proxy Service
 
 如果你觉得本项目对你有用,而且你也恰巧有这方面的需求,你也可以选择通过我的购买链接赞助我  
 - [搬瓦工GIA服务器](https://bandwagonhost.com/aff.php?aff=41846)  - - - 仅推荐购买GIA套餐 - - -   
